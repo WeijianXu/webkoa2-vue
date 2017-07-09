@@ -1,9 +1,9 @@
-# webapp
+# webkoa2
 a framework based on koa2
 
 # enverionment
 - node v7.6+
-- npm i -g better-npm-run
+- `npm i -g better-npm-run` // You should install better-npm-run globly
 
 # How to start it
 - `npm install`
