@@ -51,6 +51,10 @@
     "webpack-livereload-plugin": "^0.11.0"
   },
   "dependencies": {
+    "co": "^4.6.0",
+    "koa-log4": "^2.2.1",
+    "koa-simple-router": "^0.2.0",
+    "koa-static": "^4.0.1",
     "lodash": "^4.17.4"
   }
 }
