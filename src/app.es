@@ -3,12 +3,13 @@ import Koa from 'koa';
 import serve from 'koa-static'; // 操作模板目录
 import router from 'koa-simple-router';
 import path from 'path';
+import render from 'koa-swig';
 import co from 'co';
 import log4js from 'koa-log4';
 // 配置信息
 import config from './config/config';
 import logger from './config/logger';
-import errorHandler from './libs/pageHandler';
+import pageHandler from './libs/pageHandler';
 import Controllers from './Controllers/ControllerInit';
 
 const app = new Koa();
@@ -30,7 +31,7 @@ pageHandler.error(app);
 //初始化所有路由controllers
 Controllers.getAllrouters(app, router);
 
-//监听端口🐂😊
+//监听端口
 app.listen(config.port);
 console.log('webkoa2 listening on port %s', config.port);
 process.env.NODE_ENV = "dev"; // prod
