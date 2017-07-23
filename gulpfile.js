@@ -5,8 +5,9 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const watch = require('gulp-watch');
+const copy = require('gulp-copy');
 
-gulp.task('default', () => {
+gulp.task('build', () => {
   return gulp.src('src/**/*.es')
     .pipe(sourcemaps.init())
     .pipe(babel({
@@ -16,3 +17,14 @@ gulp.task('default', () => {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./build'));
 })
+
+gulp.task('copy', () => {
+  // 设置copy插件的路径为 './build/' ，同时设置prefix为1，从而避免源文件拷贝时被清空
+  return gulp.src('src/**/*.json')
+    .pipe(copy('./build/', {
+      prefix: 1
+    }))
+    .pipe(gulp.dest('./build'));
+});
+
+gulp.task('default', ['copy', 'build']);

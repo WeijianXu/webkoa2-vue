@@ -77,7 +77,7 @@ const _entries = Object.assign(jsEntries),
       test: /\.(es|jsx)$/,
       loader: 'babel-loader',
       options: {
-        'presets': ['es2015', 'stage-0'],
+        'presets': ['react', 'es2015', 'stage-0'],
         'plugins': ['transform-runtime']
       },
       exclude: path.resolve(__dirname, '../node_modules')

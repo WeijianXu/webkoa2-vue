@@ -17,6 +17,24 @@ export default function(app) {
   /*生成logs目录*/
   try {
     fs.mkdirSync(logDir);
+    fs.writeFile(path.join(logDir, "http.log"), "", function(err) {
+      if (err) {
+        return console.log('Could not set up http.log, error was: ', err);
+      }
+      console.log("The file http.log was created!");
+    });
+    fs.writeFile(path.join(logDir, "app.log"), "", function(err) {
+      if (err) {
+        return console.log('Could not set up app.log, error was: ', err);
+      }
+      console.log("The file app.log was created!");
+    });
+    fs.writeFile(path.join(logDir, "errors.log"), "", function(err) {
+      if (err) {
+        return console.log('Could not set up errors.log, error was: ', err);
+      }
+      console.log("The file errors.log was created!");
+    });
   } catch (err) {
     if (err.code !== 'EEXIST') {
       console.error('Could not set up log directory, error was: ', err);

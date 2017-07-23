@@ -7,7 +7,7 @@ class IndexController extends BaseController {
     app.use(router(_ => {
       _.get('/', this.index());
       _.get('/index', this.index());
-      _.get('/index.html', this.index());
+      _.get('/index.html', this.indexHtml());
       _.get('/index/index', this.index());
     }));
   }
@@ -16,6 +16,14 @@ class IndexController extends BaseController {
     return async(ctx, next) => {
       ctx.body = await ctx.render('index/pages/index.html', {
         title: "webkoa2"
+      });
+    }
+  }
+
+  indexHtml() {
+    return async(ctx, next) => {
+      ctx.body = await ctx.render('index.html', {
+        title: "welcome webkoa2"
       });
     }
   }

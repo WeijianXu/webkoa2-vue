@@ -21,7 +21,43 @@ const options = {
       name: 'vendor',
       filename: 'assets/scripts/[name].[chunkhash:5].bundle.js'
     }),
-
+    new HtmlWebpackPlugin({
+      template: path.join(baseConfig.dir.rootPath, './web/views/common/pages/layout.html'),
+      filename: './views/common/pages/layout.html',
+      inject: false,
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/404.html'),
+      filename: './views/error/pages/404.html',
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      },
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/500.html'),
+      filename: './views/error/pages/500.html',
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      },
+      inject: false
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(baseConfig.dir.rootPath, './web/views/index/pages/index.js'),
+      filename: './views/index/pages/index.html',
+      minify: {
+        removeCommets: true,
+        collapseWhitespace: true
+      },
+      inject: false,
+      chunks: ['vendor', 'common', 'index-index']
+    }),
     // 混淆代码
     new webpack.optimize.UglifyJsPlugin({
       // 最紧凑的输出
@@ -52,8 +88,8 @@ for (let i in baseConfig.widgets) {
       template: baseConfig.widgets[i],
       filename: './widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
       minify: {
-        removeCommets: true,  // 去掉注释
-        collapseWhitespace: true  // 压缩代码
+        removeCommets: true, // 去掉注释
+        collapseWhitespace: true // 压缩代码
       },
       inject: false
     })

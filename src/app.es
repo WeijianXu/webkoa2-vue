@@ -9,8 +9,8 @@ import log4js from 'koa-log4';
 // 配置信息
 import config from './config/config';
 import logger from './config/logger';
-import pageHandler from './libs/pageHandler';
-import Controllers from './Controllers/ControllerInit';
+import pageHandler from './lib/pageHandler';
+import Controllers from './Controller/ControllerInit';
 
 const app = new Koa();
 
@@ -22,8 +22,10 @@ app.context.render = co.wrap(render({
     autoescape: true,
     cache: 'memory', // disable, set to false
     ext: 'html',
-    varControls: ['[[', ']]'],
-    writeBody: false
+    encoding: 'utf8',
+    varControls: ['<%=', '%>'], // 变量输出方式
+    writeBody: false,
+    filters: {} // 自定义过滤器或者重写默认过滤器
 }));
 
 // 在渲染页面之前，先设置页面的错误处理句柄
