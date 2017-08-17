@@ -11,19 +11,19 @@ const uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 const options = {
   output: {
-    path: baseConfig.dir.buildPath,
+    path: baseConfig.dir.publicPath,
     publicPath: '/',
-    filename: 'assets/scripts/[name].[chunkhash:5].bundle.js' // 文件输出
+    filename: 'scripts/[name].[chunkhash:5].bundle.js' // 文件输出
   },
   plugins: [
     // 公共文件输出
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'assets/scripts/[name].[chunkhash:5].bundle.js'
+      filename: 'scripts/[name].[chunkhash:5].bundle.js'
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/common/pages/layout.html'),
-      filename: './views/common/pages/layout.html',
+      filename: '../views/common/pages/layout.html',
       inject: false,
       minify: {
         removeCommets: true,
@@ -32,7 +32,7 @@ const options = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/404.html'),
-      filename: './views/error/pages/404.html',
+      filename: '../views/error/pages/404.html',
       minify: {
         removeCommets: true,
         collapseWhitespace: true
@@ -41,7 +41,7 @@ const options = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/500.html'),
-      filename: './views/error/pages/500.html',
+      filename: '../views/error/pages/500.html',
       minify: {
         removeCommets: true,
         collapseWhitespace: true
@@ -50,7 +50,7 @@ const options = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/index/pages/index.js'),
-      filename: './views/index/pages/index.html',
+      filename: '../views/index/pages/index.html',
       minify: {
         removeCommets: true,
         collapseWhitespace: true
@@ -76,7 +76,7 @@ const options = {
         reduce_vars: true
       }
     }),
-    new ExtractTextPlugin("assets/styles/[name].[hash:5].css"),
+    new ExtractTextPlugin("styles/[name].[hash:5].css"),
   ]
 };
 
@@ -86,7 +86,7 @@ for (let i in baseConfig.widgets) {
   _options.plugins.push(
     new HtmlWebpackPlugin({
       template: baseConfig.widgets[i],
-      filename: './widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
+      filename: '../widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
       minify: {
         removeCommets: true, // 去掉注释
         collapseWhitespace: true // 压缩代码

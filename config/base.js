@@ -35,17 +35,18 @@ const jsEntries = fs.readdirSync(entryPath).reduce(function(o, filename) {
   return o;
 }, {});
 // 遍历所有组件widget
-const widgetPage = fs.readdirSync(widgetPath).reduce(function(o, filename) {
+const widgetPages = fs.readdirSync(widgetPath).reduce(function(o, filename) {
   if (!/\./.test(filename)) {
     const _fd = widgetPath + '/' + filename;
     fs.readdirSync(_fd).map(function(ifilename) {
-      if (new RegExp(fmt.widgetPath + '$').test(ifilename)) {
-        o[ifilename.replace(fmt.widgetPath, '')] = path.join(widgetPath, filename, ifilename);
+      if (new RegExp(fmt.widgetPage + '$').test(ifilename)) {
+        o[ifilename.replace(fmt.widgetPage, '')] = path.join(widgetPath, filename, ifilename);
       }
     });
   }
   return o;
 }, {});
+console.log('widgetPages: ', widgetPages);
 
 // webpack核心配置
 const _entries = Object.assign(jsEntries),
@@ -127,12 +128,12 @@ const webpackConfig = {
         },
         resolve: _resolve
     },
-    widgets: widgetPage
+    widgets: widgetPages
 };
 
 module.exports = webpackConfig;
 module.exports.fmt = fmt;
 module.exports.dir = {
   rootPath: path.join(__dirname, '..'),
-  buildPath: path.join(__dirname, '../build/')
+  publicPath: path.join(__dirname, '../build/assets')
 }

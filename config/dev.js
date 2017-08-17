@@ -11,9 +11,9 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const options = {
   output: {
-    path: baseConfig.dir.buildPath,
+    path: baseConfig.dir.publicPath,
     publicPath: '/',
-    filename: 'assets/scripts/[name].bundle.js' // 文件输出
+    filename: 'scripts/[name].bundle.js' // 文件输出
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
@@ -22,26 +22,26 @@ const options = {
     // 公共文件输出
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'assets/scripts/[name].bundle.js'
+      filename: 'scripts/[name].bundle.js'
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/common/pages/layout.html'),
-      filename: './views/common/pages/layout.html',
+      filename: '../views/common/pages/layout.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/404.html'),
-      filename: './views/error/pages/404.html',
+      filename: '../views/error/pages/404.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/500.html'),
-      filename: './views/error/pages/500.html',
+      filename: '../views/error/pages/500.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
       template: path.join(baseConfig.dir.rootPath, './web/views/index/pages/index.js'),
-      filename: './views/index/pages/index.html',
+      filename: '../views/index/pages/index.html',
       inject: false,
       chunks: ['vendor', 'common', 'index-index']
     }),
@@ -49,7 +49,7 @@ const options = {
       appendScriptTag: true
     }),
     // 样式文件输出
-    new ExtractTextPlugin("assets/styles/[name].css")
+    new ExtractTextPlugin("styles/[name].css")
   ]
 };
 
@@ -59,7 +59,7 @@ for (let i in baseConfig.widgets) {
   _options.plugins.push(
     new HtmlWebpackPlugin({
       template: baseConfig.widgets[i],
-      filename: './widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
+      filename: '../widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
       inject: false
     })
   )

@@ -14,7 +14,6 @@ import Controllers from './Controller/ControllerInit';
 
 const app = new Koa();
 
-app.use(serve(config.staticDir)); // 静态资源文件
 logger(app);  // 配置logger
 // 定制上下文render
 app.context.render = co.wrap(render({
@@ -33,6 +32,7 @@ pageHandler.error(app);
 //初始化所有路由controllers
 Controllers.getAllrouters(app, router);
 
+app.use(serve(config.staticDir)); // 静态资源文件
 //监听端口
 app.listen(config.port);
 console.log('webkoa2 listening on port %s', config.port);
