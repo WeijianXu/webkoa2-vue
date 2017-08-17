@@ -46,7 +46,6 @@ const widgetPages = fs.readdirSync(widgetPath).reduce(function(o, filename) {
   }
   return o;
 }, {});
-console.log('widgetPages: ', widgetPages);
 
 // webpack核心配置
 const _entries = Object.assign(jsEntries),

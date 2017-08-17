@@ -26,9 +26,9 @@ export default class Counter extends React.Component {
     );
   }
   componentDidMount() {
-    getDate();
+    this.getData();
   }
-  getDate() {
+  getData() {
     var url = window.PATH_CONTEXT + "/portal/flowcount/visitUser";
     axios.get(url).then((res) => {
       this.setState({
