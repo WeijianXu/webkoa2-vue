@@ -133,6 +133,6 @@ const webpackConfig = {
 module.exports = webpackConfig;
 module.exports.fmt = fmt;
 module.exports.dir = {
-  rootPath: path.join(__dirname, '..'),
-  publicPath: path.join(__dirname, '../build/assets')
+  sourcePath: path.join(__dirname, '../web'),
+  publicPath: path.join(__dirname, '../build/web/assets')
 }

@@ -25,22 +25,22 @@ const options = {
       filename: 'scripts/[name].bundle.js'
     }),
     new HtmlWebpackPlugin({
-      template: path.join(baseConfig.dir.rootPath, './web/views/common/pages/layout.html'),
+      template: path.join(baseConfig.dir.sourcePath, './views/common/pages/layout.html'),
       filename: '../views/common/pages/layout.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/404.html'),
+      template: path.join(baseConfig.dir.sourcePath, './views/error/pages/404.html'),
       filename: '../views/error/pages/404.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: path.join(baseConfig.dir.rootPath, './web/views/error/pages/500.html'),
+      template: path.join(baseConfig.dir.sourcePath, './views/error/pages/500.html'),
       filename: '../views/error/pages/500.html',
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: path.join(baseConfig.dir.rootPath, './web/views/index/pages/index.js'),
+      template: path.join(baseConfig.dir.sourcePath, './views/index/pages/index.js'),
       filename: '../views/index/pages/index.html',
       inject: false,
       chunks: ['vendor', 'common', 'index-index']
