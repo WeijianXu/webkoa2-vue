@@ -4,12 +4,16 @@
   "description": "a web framework based on koa2",
   "main": "index.js",
   "scripts": {
+    "dll": "better-npm-run build:dll",
     "deploy": "gulp && webpack",
     "dev": "better-npm-run build:dev",
     "prod": "better-npm-run build:prod",
     "start": "node ./build/app.js"
   },
   "betterScripts": {
+    "build:dll": {
+      "command": "webpack --progress --colors --config ./webpack-dll.config.js"
+    },
     "build:dev": {
       "command": "webpack --progress --colors",
       "env": {
@@ -36,7 +40,10 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
+    "eslint": "^4.5.0",
+    "eslint-plugin-react": "^7.2.1",
     "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-copy": "^1.0.0",
@@ -60,6 +67,8 @@
     "koa-simple-router": "^0.2.0",
     "koa-static": "^4.0.1",
     "koa-swig": "^2.2.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }

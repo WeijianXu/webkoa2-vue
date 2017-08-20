@@ -78,9 +78,18 @@ const _entries = Object.assign(jsEntries),
       loader: 'babel-loader',
       options: {
         'presets': ['react', 'es2015', 'stage-0'],
-        'plugins': ['transform-runtime']
+        'plugins': ['transform-runtime'],
+        'cacheDirectory': true
       },
-      exclude: path.resolve(__dirname, '../node_modules')
+      include: [
+        // 只去解析运行目录下的 web 文件夹
+        path.join(process.cwd(), './web')
+      ],
+      /*exclude: function(path) {
+        // 路径中含有 node_modules 的就不去解析。
+        var isNpmModule = !!path.match('node_modules/');
+        return isNpmModule;
+      }*/
     }, {
       // loader: 'style!css?sourceMap!sass?sourceMap!import-glob'
       test: /\.less$/i,
@@ -95,9 +104,12 @@ const _entries = Object.assign(jsEntries),
     }]
   },
   _resolve = {
+    modules: ["node_modules"],
     extensions: ['.js', '.es', '.vue', 'jsx', '.less'],
     alias: {
       // vue: 'vue/dist/vue.js'
+      React: 'react',
+      ReactDOM: 'react-dom'
     }
   };
 
@@ -105,29 +117,49 @@ let _devLoaders = _.clone(_module.rules);
 let _prodLoaders = _.clone(_module.rules);
 // 处理图片、字体等文件
 _devLoaders.push({
-    test: /\.(png|jpg|gif|eot|woff|woff2|ttf|svg|otf)$/,
-    loader: 'file-loader?name=assets/images/[name].[ext]'
+  test: /\.(png|jpg|gif|eot|woff|woff2|ttf|svg|otf)$/,
+  loader: 'file-loader',
+  options: {
+    name: 'images/[name].[ext]',
+    publicPath: '/'
+  }
 });
 _prodLoaders.push({
-    test: /\.(png|jpg|gif|eot|woff|woff2|ttf|svg|otf)$/,
-    loader: 'file-loader?name=assets/images/[name].[hash:5].[ext]'
+  test: /\.(png|jpg|gif|eot|woff|woff2|ttf|svg|otf)$/,
+  loader: 'file-loader',
+  options: {
+    name: 'images/[name].[hash:5].[ext]',
+    publicPath: '/'
+  }
 });
 const webpackConfig = {
-    dev: {
-        entry: _entries,
-        module: {
-            rules: _devLoaders
-        },
-        resolve: _resolve,
+  dev: {
+    entry: _entries,
+    module: {
+        rules: _devLoaders
     },
-    prod: {
-        entry: _entries,
-        module: {
-            rules: _prodLoaders
-        },
-        resolve: _resolve
+    resolve: _resolve,
+    devtool: 'cheap-source-map'
+  },
+  prod: {
+    entry: _entries,
+    module: {
+        rules: _prodLoaders
     },
-    widgets: widgetPages
+    resolve: _resolve
+  },
+  widgets: widgetPages,
+  basePlugins: [
+    new webpack.DllReferencePlugin({
+      context: path.join(__dirname, '..'), // 需要跟之前保持一致，这个用来指导 Webpack 匹配 manifest 中库的路径；
+      manifest: require('../manifest.json')
+    }),
+    new webpack.ProvidePlugin({
+      // Vue: 'vue'
+      React: 'React',
+      ReactDOM: 'ReactDOM'
+    }),
+  ]
 };
 
 module.exports = webpackConfig;

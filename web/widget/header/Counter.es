@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default class Counter extends React.Component {
   static propTypes = {
@@ -18,9 +17,9 @@ export default class Counter extends React.Component {
       <div className="counterbar">
         <div className="counter">
           累计访问
-          <em className="cor1">{this.state.totalVisitor}</em>人，当前登录
-          <em className="cor4" >{this.state.currLoginCount}</em>人，当前在线
-          <em className="cor3">{this.state.currOnlineCount}</em>人
+          <em className="text-primary">{this.state.totalVisitor}</em>人，当前登录
+          <em className="text-danger" >{this.state.currLoginCount}</em>人，当前在线
+          <em className="text-info">{this.state.currOnlineCount}</em>人
         </div>
       </div>
     );
