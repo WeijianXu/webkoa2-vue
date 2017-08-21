@@ -19,7 +19,7 @@ const widgetPath = path.join(__dirname, '../web/widget');
 const fmt = {
   jsEntry: '.entry.es',
   widgetPage: '.html'
-}
+};
 
 // 遍历得到所有入口文件
 const jsEntries = fs.readdirSync(entryPath).reduce(function(o, filename) {
@@ -104,7 +104,7 @@ const _entries = Object.assign(jsEntries),
     }]
   },
   _resolve = {
-    modules: ["node_modules"],
+    modules: ['node_modules'],
     extensions: ['.js', '.es', '.vue', 'jsx', '.less'],
     alias: {
       // vue: 'vue/dist/vue.js'
@@ -136,7 +136,7 @@ const webpackConfig = {
   dev: {
     entry: _entries,
     module: {
-        rules: _devLoaders
+      rules: _devLoaders
     },
     resolve: _resolve,
     devtool: 'cheap-source-map'
@@ -144,7 +144,7 @@ const webpackConfig = {
   prod: {
     entry: _entries,
     module: {
-        rules: _prodLoaders
+      rules: _prodLoaders
     },
     resolve: _resolve
   },
@@ -167,4 +167,4 @@ module.exports.fmt = fmt;
 module.exports.dir = {
   sourcePath: path.join(__dirname, '../web'),
   publicPath: path.join(__dirname, '../build/web/assets')
-}
+};
