@@ -7,13 +7,19 @@ module.exports = {
         "es6": true
     },
     "extends": "eslint:recommended",
+    "installedESLint": true,
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
-            "jsx": true
+            "jsx": true,
+            "arrowFunctions": true,
+            "classes": true,
+            "modules": true,
+            "defaultParams": true
         },
         "sourceType": "module"
     },
+    "parser": "babel-eslint",
     "plugins": [
         "react"
     ],
@@ -23,11 +29,11 @@ module.exports = {
             2
         ],
         "linebreak-style": [
-            "warn",
-            "windows"
+            "error",
+            "unix"
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [

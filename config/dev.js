@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 // 额外处理所需组件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const options = {
@@ -51,8 +51,8 @@ const plugins = [
     appendScriptTag: true
   }),
   // 样式文件输出
-  new ExtractTextPlugin("styles/[name].css")
-]
+  new ExtractTextPlugin('styles/[name].css')
+];
 
 const _options = Object.assign(options, baseConfig.dev);
 _options.plugins = plugins;
@@ -64,6 +64,6 @@ for (let i in baseConfig.widgets) {
       filename: '../widget/' + i + '/' + i + baseConfig.fmt.widgetPage,
       inject: false
     })
-  )
-};
+  );
+}
 module.exports = _options;

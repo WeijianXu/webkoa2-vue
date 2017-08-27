@@ -1,17 +1,34 @@
 @pre: hz_;
+@primary-color: #2f995c;
+@danger-color: #fb6f6f;
+@info-color: #5ab5c5;
+@hover-color: #095d32;
+
+@normal-color: #333;
 
 .@{pre}commonbody {
   background: #fff;
   color: #333;
 
   .text-primary {
-    color: #2f995c;
+    color: @primary-color;
   }
   .text-danger {
-    color: #fb6f6f;
+    color: @danger-color;
   }
   .text-info {
-    color: #5ab5c5;
+    color: @info-color;
+  }
+
+  a:hover, a:focus {
+    color: @hover-color;
+    text-decoration: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: @normal-color;
+    cursor: pointer;
   }
 }
 

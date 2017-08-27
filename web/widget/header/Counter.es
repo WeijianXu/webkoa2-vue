@@ -1,7 +1,7 @@
-
+import React from 'react';
 export default class Counter extends React.Component {
   static propTypes = {
-    userId: React.PropTypes.string,
+    userId: React.PropTypes.string
   };
 
   constructor(props) {
@@ -14,7 +14,7 @@ export default class Counter extends React.Component {
   }
   render() {
     return (
-      <div className="counterbar">
+      <div className="counter-bar">
         <div className="counter">
           累计访问
           <em className="text-primary">{this.state.totalVisitor}</em>人，当前登录

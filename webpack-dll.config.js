@@ -14,7 +14,7 @@ module.exports = {
     library: '[name]',
   },
   entry: {
-    "lib": vendors,
+    'lib': vendors,
   },
   plugins: [
     new webpack.DllPlugin({
