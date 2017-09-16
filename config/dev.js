@@ -54,7 +54,11 @@ const plugins = [
   new ExtractTextPlugin('styles/[name].css')
 ];
 
-const _options = Object.assign(options, baseConfig.dev);
+const _options = Object.assign(options, baseConfig.dev, {
+  devServer: {
+    hot: true
+  }
+});
 _options.plugins = plugins;
 // 处理组件模板文件
 for (let i in baseConfig.widgets) {

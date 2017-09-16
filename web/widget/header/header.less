@@ -1,83 +1,19 @@
-.newHeader {
-  /* max-width: 71.43em; */
-  width: 100%;
-}
-
-
-/* @component Counter */
-
-.counter-bar {
-  height: 2em;
-  padding: 0 10px;
-  background: #eee;
-}
-
-.counter {
-  margin: auto;
-  line-height: 2em;
-}
-
-.counter em {
-  font-weight: bold;
-  font-style: normal;
-  margin: 0 5px;
-}
-
-
-/* end */
-
-.topBar {
-  height: 6em;
-  padding: 10px 0;
+@headerZIndex: 1031;
+.w-main-nav {
   background: #fff;
-  margin: auto;
+    border: none;
+    width: auto;
+    height: auto!important;
+    overflow: visible!important;
+    padding: 0!important;
+    z-index: @headerZIndex;
+    display: block!important;
+    float: left;
 }
-
-.com-nav {
-  background: #2f995c;
-}
-
-
-/* @component Logo */
-
-.logo {
-  width: 22.4em;
-  height: 3.6em;
-  background-position: 0 0;
-  display: block;
-  margin-top: 0.5em;
-}
-
-.headLogo-icon {
-  background-image: url(images/logos.png);
-  background-repeat: no-repeat;
-}
-
-
-/* end */
-
-
-/* @component LoginLogout */
-
-.header-tools {
-  float: right;
-}
-
-.bar-tool {
-  float: right;
-  display: inline-block;
-  vertical-align: top;
-  height: 20px;
-}
-
-.tool-li {
-  float: left;
+.w-head-logo {
+  width: auto;
+  z-index: @headerZIndex + 2;
+  padding: 0;
   position: relative;
-  cursor: pointer;
-  i {
-    margin-right: 0;
-    margin-left: 10px;
-  }
+  float: left;
 }
-
-/* end */

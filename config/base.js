@@ -51,6 +51,35 @@ const widgetPages = fs.readdirSync(widgetPath).reduce(function(o, filename) {
 const _entries = Object.assign(jsEntries),
   _module = {
     rules: [{
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        // 注意：不要在 `loader` 下嵌入 `postcss` 选项
+        /*postcss: {
+          plugins: function() {
+            return [
+              precss({
+                browsers: 'last 3 versions'
+              }),
+              cssnext({  ...options  }),
+              cssvariables({})
+            ];
+          }, // list of plugins
+          options: {
+            parser: 'sugarss' // use sugarss parser
+          }
+        },*/
+        loaders: {
+          css: ExtractTextPlugin.extract({
+            use: 'css-loader',
+            fallback: 'vue-style-loader' // <- 这是vue-loader的依赖，所以如果使用npm3，则不需要显式安装
+          }),
+          js: 'babel-loader!eslint-loader'
+        },
+        extractCSS: true // 提取 CSS 到单个文件
+      },
+      exclude: /node_modules/
+    }, {
       //设置对应的资源后缀.
       test: /\.(css)$/,
       //设置后缀对应的加载器.
@@ -77,7 +106,7 @@ const _entries = Object.assign(jsEntries),
       test: /\.(es|jsx)$/,
       loader: 'babel-loader',
       options: {
-        'presets': ['react', 'es2015', 'stage-0'],
+        'presets': [ /*'react', */ 'es2015', 'stage-0'],
         'plugins': ['transform-runtime'],
         'cacheDirectory': true
       },
@@ -107,9 +136,10 @@ const _entries = Object.assign(jsEntries),
     modules: ['node_modules'],
     extensions: ['.js', '.es', '.vue', 'jsx', '.less'],
     alias: {
-      // vue: 'vue/dist/vue.js'
-      React: 'react',
-      ReactDOM: 'react-dom'
+      vue: 'vue',
+      'vue$': 'vue/dist/vue.common.js'
+        // React: 'react',
+        // ReactDOM: 'react-dom'
     }
   };
 

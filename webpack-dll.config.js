@@ -2,8 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const vendors = [
-  'react',
-  'react-dom',
+  'vue',
   // ...其它库
 ];
 
@@ -23,9 +22,9 @@ module.exports = {
       context: __dirname,
     }),
     new webpack.ProvidePlugin({
-      // Vue: 'vue'
-      React: 'React',
-      ReactDOM: 'ReactDOM'
+      Vue: 'vue'  // 将插件中的 vue 指向 Vue 
+      // React: 'React',
+      // ReactDOM: 'ReactDOM'
     }),
   ],
 };
