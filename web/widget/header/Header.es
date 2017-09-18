@@ -1,4 +1,5 @@
 import './header.less';
+import Vue from 'vue';
 import Menu from '../menu/w-menu.vue';
 import Logo from './w-logo.vue';
 let menusData = [{
@@ -33,6 +34,7 @@ let logoData = {
   title: '管理平台',
   subtitle: 'Manage Platform'
 };
+import './images/logo.png';
 
 let Header = {
   init() {

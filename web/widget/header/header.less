@@ -1,19 +1,31 @@
-@headerZIndex: 1031;
+@import '../common/config.less';
+.w-header {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  overflow: visible;
+  &:after {
+    content: ' ';
+    clear: both;
+    display: block;
+  }
+}
+
 .w-main-nav {
   background: #fff;
-    border: none;
-    width: auto;
-    height: auto!important;
-    overflow: visible!important;
-    padding: 0!important;
-    z-index: @headerZIndex;
-    display: block!important;
-    float: left;
-}
-.w-head-logo {
+  border: none;
   width: auto;
+  height: auto!important;
+  overflow: visible!important;
+  padding: 0!important;
+  z-index: @headerZIndex;
+  display: block!important;
+  float: left;
+}
+
+.w-head-logo {
   z-index: @headerZIndex + 2;
-  padding: 0;
+  padding: 0 1em 0 0;
   position: relative;
   float: left;
+  width: 14em;
 }

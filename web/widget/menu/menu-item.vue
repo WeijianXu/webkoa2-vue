@@ -26,12 +26,13 @@ export default {
   },
   computed: {
     hasChild() {
-      return this.memu.children.length ? true : false;
+      return this.menu.children && this.menu.children.length ? true : false;
     }
   },
   methods: {
     activeMenu() {
       if (this.hasChild) {
+        this.isActive = !this.isActive;
         this.isOpened = !this.isOpened; // 切换下拉菜单的显示与隐藏
       } else if (this.isActive) {
         // 当前菜单已经选中，无需刷新页面
@@ -45,6 +46,7 @@ export default {
 };
 </script>
 <style lang="less">
+@import '../common/config.less';
 .w-nemu-active {
   background: @menuActiveColor;
 }
@@ -53,7 +55,7 @@ export default {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: @headerZIndex - 31;
   display: none;
   float: left;
   min-width: 12em;
@@ -65,8 +67,11 @@ export default {
   font-size: 13px;
   border-radius: 2px;
   li {
+    float: none !important;
     a {
-      line-height: 32px;
+      display: block;
+      line-height: 1.2em;
+      padding: 10px 15px;
     }
   }
 }

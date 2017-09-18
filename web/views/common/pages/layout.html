@@ -10,7 +10,7 @@
     {% block styles %}{% endblock %}
   </head>
   <body class="hz_commonbody">
-    <div id="header"></div>
+    {% include "../../../widget/header/header.html" %}
     {% block content %}{% endblock %}
     {% include "../../../widget/footer/footer.html" %}
     <!-- <script src="http://cdn.bootcss.com/vue/2.3.0/vue.min.js"></script>

@@ -15,19 +15,28 @@ export default {
       required: true,
       default: []
     }
+  },
+  components: {
+    'menu-item': MenuItem
   }
 };
 </script>
 <style lang="less">
-@menuActiveColor: #e5e5e5;
-@menuColor: #555;
+@import '../common/config.less';
 .w-nav {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
+  border-left: @menuBorder;
   li {
     position: relative;
     display: block;
+    border-right: @menuBorder;
+    a {
+      line-height: 3em;
+      display: block;
+      padding: 0 15px;
+    }
   }
 }
 
